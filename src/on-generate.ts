@@ -6,7 +6,7 @@ import { handleTypeAlias } from './handler/type-alias';
 import { parseDmmf } from './helpers/dmmf';
 
 export async function onGenerate(options: GeneratorOptions) {
-  const nsName = options.generator.config.namespace || 'PrismaJson';
+  const nsName = options.generator.config.namespace as string || 'PrismaJson';
 
   const prismaClientOptions = options.otherGenerators.find((g) => g.name === 'client');
 
@@ -26,7 +26,7 @@ export async function onGenerate(options: GeneratorOptions) {
   const { content, replacer, sourcePath, update } = await readPrismaDeclarations(
     nsName,
     prismaClientOptions.output.value,
-    options.generator.config.clientOutput,
+    options.generator.config.clientOutput as string,
     options.schemaPath
   );
 
@@ -51,7 +51,7 @@ export async function onGenerate(options: GeneratorOptions) {
             replacer,
             models,
             nsName,
-            options.generator.config.useType
+            options.generator.config.useType as string
           )
         );
         break;
@@ -63,7 +63,7 @@ export async function onGenerate(options: GeneratorOptions) {
             replacer,
             models,
             nsName,
-            options.generator.config.useType
+            options.generator.config.useType as string
           )
         );
         break;
